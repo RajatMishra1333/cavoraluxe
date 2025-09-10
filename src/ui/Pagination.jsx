@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { PaginationNext, PaginationPrev } from "@/svg";
 
 const Pagination = ({
@@ -17,12 +17,15 @@ const Pagination = ({
     }
     setCurrPage(idx);
     window.scrollTo(0, 0);
+    // Note: You might not need to call paginatedData here since the useEffect will handle it when currPage changes.
+    // However, leaving it can make the pagination feel slightly more responsive.
     paginatedData(items, pageStart, countOfPage);
   }
 
+  // The correction is in the array on the next line
   useEffect(() => {
     paginatedData(items, pageStart, countOfPage);
-  }, [items, pageStart, countOfPage]);
+  }, [items, pageStart, countOfPage, paginatedData]);
 
   return (
     <nav>
